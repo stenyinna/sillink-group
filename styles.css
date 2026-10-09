@@ -42,3 +42,29 @@ body[data-theme="dark"] .theme-state{color:#f3f3f6}
   .main-nav{top:73px}
 }
 @media(max-width:370px){.theme-label{display:none}.brand{width:92px;flex-basis:92px}}
+
+
+/* VERIFIED VERCEL THEME SWITCH */
+.site-header{display:flex;align-items:center;gap:clamp(10px,1.8vw,24px)}
+.theme-control{display:flex!important;align-items:center;gap:8px;flex:0 0 auto;position:relative;z-index:100;margin-left:auto;visibility:visible;opacity:1}
+.theme-label{display:inline-block!important;font-size:10px;font-weight:800;letter-spacing:1px;white-space:nowrap;color:var(--ink,#24242b)}
+.theme-switch{display:inline-flex!important;align-items:center;gap:6px;border:0;background:transparent;padding:4px;cursor:pointer;color:var(--ink,#24242b);font-size:10px;font-weight:800;letter-spacing:.8px;visibility:visible;opacity:1}
+.theme-switch-track{display:inline-flex;align-items:center;width:42px;height:24px;border-radius:99px;background:#c8c8d0;border:1px solid #aaaab4;padding:2px;transition:background .2s,border-color .2s;flex:0 0 auto}
+.theme-switch-knob{display:block;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #0003;transform:translateX(0);transition:transform .2s}
+.theme-state{display:inline-block;min-width:23px;text-align:left}
+.theme-switch:focus-visible{outline:2px solid #e60032;outline-offset:3px;border-radius:4px}
+body[data-theme="dark"] .theme-label,body[data-theme="dark"] .theme-switch{color:#f4f4f7}
+body[data-theme="dark"] .theme-switch-track{background:#e60032;border-color:#e60032}
+body[data-theme="dark"] .theme-switch-knob{transform:translateX(18px)}
+@media(max-width:900px){.site-header{gap:10px}.main-nav{gap:clamp(8px,1.5vw,16px)}.theme-control{gap:4px}.theme-label{font-size:9px;letter-spacing:.5px}}
+@media(max-width:680px){
+ .site-header{gap:9px}
+ .theme-control{margin-left:auto;order:2}
+ .theme-label{font-size:8px;letter-spacing:.3px}
+ .theme-switch{gap:4px;padding:3px;font-size:9px}
+ .theme-switch-track{width:36px;height:22px}
+ .theme-switch-knob{width:16px;height:16px}
+ body[data-theme="dark"] .theme-switch-knob{transform:translateX(14px)}
+ .menu-toggle{order:3}
+}
+@media(max-width:360px){.theme-label{display:none}}
