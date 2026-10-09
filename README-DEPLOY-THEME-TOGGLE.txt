@@ -1,21 +1,18 @@
-SILLINK GROUP — THEME SWITCH FIX
+SILLINK GROUP — THEME SWITCH FIXED SOURCE PACKAGE
 
-WHAT CHANGED
-- The LIGHT MODE / DARK MODE switch is inserted immediately before the About navigation item where that markup is identifiable.
-- The switch is keyboard-accessible and updates its accessible label/state.
-- The chosen theme is saved in localStorage so it persists on the same browser.
-- Theme switch styling and behavior are included in styles.css and script.js.
+Fixes included:
+- Exactly one visible Light Mode / Dark Mode switch, immediately before About.
+- One click handler only (the earlier duplicate handlers were removed).
+- Theme preference persists in localStorage.
+- Dark theme styling for the main sections, navigation, cards, contact form and footer.
+- Responsive styling for desktop and mobile.
 
-DEPLOY TO VERCEL
-1. Extract this ZIP.
-2. Upload/replace the files in the ROOT of the GitHub repository connected to your Vercel project.
-   Replace index.html, styles.css, and script.js. Keep sillink-logo.png in the same root if included.
-   Do not upload the ZIP file itself as the website source.
-3. Commit the changes to the branch configured as the Vercel Production Branch (commonly main).
-4. In Vercel, open Project Settings > Git and confirm the correct GitHub repository and Production Branch are connected.
-5. Make sure automatic deployments are enabled. A push to the Production Branch should start a new production deployment.
-6. Open Deployments and wait for the latest deployment to show Ready. If it does not start, use Redeploy or reconnect the correct repository/branch.
-7. Hard-refresh the website (Ctrl+Shift+R) or test in a private window to avoid stale browser cache.
+DEPLOYMENT
+1. Upload/replace index.html, styles.css, and script.js in the ROOT of the GitHub repository actually connected to the inspiremepay.com Vercel project.
+2. Keep sillink-logo.png and the other project files in the same root as before.
+3. Commit and push to the branch set as Vercel's Production Branch.
+4. In Vercel > Project Settings > Git, confirm the repository and production branch are correct and automatic deployments are enabled.
+5. Wait for the newest deployment to show Ready, and ensure www.inspiremepay.com is assigned to that project.
+6. Hard-refresh (Ctrl+Shift+R) or test in a private window.
 
-IMPORTANT
-This package cannot change your GitHub repository or Vercel project by itself. Automatic Vercel updates require the correct Git integration and a successful commit/push to the configured branch.
+This ZIP cannot publish itself to GitHub or change Vercel settings. Future Git pushes auto-deploy only if the correct repository/branch integration is configured.

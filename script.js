@@ -53,29 +53,24 @@ byId('contact-form').addEventListener('submit',e=>{
   window.location.href=`mailto:info@sillinkgroupd.com?subject=${subject}&body=${body}`;
 });
 
-
-
-
-
-
-// VERIFIED VERCEL THEME SWITCH: works without a framework or build step.
+// THEME SWITCH: one handler only; preference persists across visits.
 (function () {
   function initThemeSwitch() {
-    var toggle = document.getElementById('theme-toggle');
-    if (!toggle || toggle.dataset.themeReady === 'true') return;
-    toggle.dataset.themeReady = 'true';
+    var button = document.getElementById('theme-toggle');
     var label = document.getElementById('theme-label');
     var state = document.getElementById('theme-state');
+    if (!button || button.dataset.themeReady === 'true') return;
+    button.dataset.themeReady = 'true';
 
-    function applyTheme(theme, save) {
+    function applyTheme(theme, persist) {
       var dark = theme === 'dark';
       document.body.setAttribute('data-theme', dark ? 'dark' : 'light');
-      toggle.setAttribute('aria-checked', dark ? 'true' : 'false');
-      toggle.setAttribute('aria-label', dark ? 'Dark mode is ON. Switch to light mode.' : 'Dark mode is OFF. Switch to dark mode.');
-      toggle.setAttribute('title', dark ? 'Dark mode ON — click for light mode' : 'Dark mode OFF — click for dark mode');
+      button.setAttribute('aria-checked', String(dark));
+      button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      button.setAttribute('title', dark ? 'Switch to light mode' : 'Switch to dark mode');
       if (label) label.textContent = dark ? 'DARK MODE' : 'LIGHT MODE';
       if (state) state.textContent = dark ? 'ON' : 'OFF';
-      if (save) {
+      if (persist) {
         try { window.localStorage.setItem('sillink-theme', dark ? 'dark' : 'light'); } catch (e) {}
       }
     }
@@ -83,45 +78,10 @@ byId('contact-form').addEventListener('submit',e=>{
     var saved = 'light';
     try { saved = window.localStorage.getItem('sillink-theme') || 'light'; } catch (e) {}
     applyTheme(saved, false);
-    toggle.addEventListener('click', function () {
-      var isDark = document.body.getAttribute('data-theme') === 'dark';
-      applyTheme(isDark ? 'light' : 'dark', true);
+    button.addEventListener('click', function () {
+      applyTheme(document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
     });
   }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initThemeSwitch);
-  } else {
-    initThemeSwitch();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initThemeSwitch);
+  else initThemeSwitch();
 })();
-
-
-/* SILLINK PERMANENT THEME CONTROL START */
-(() => {
-  const root = document.documentElement;
-  const button = document.getElementById('theme-toggle');
-  const label = document.getElementById('theme-label');
-  const state = document.getElementById('theme-state');
-  if (!button || !label || !state) return;
-
-  const applyTheme = (theme) => {
-    const dark = theme === 'dark';
-    root.setAttribute('data-theme', dark ? 'dark' : 'light');
-    button.setAttribute('aria-checked', String(dark));
-    button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
-    button.setAttribute('title', dark ? 'Switch to light mode' : 'Switch to dark mode');
-    label.textContent = dark ? 'DARK MODE' : 'LIGHT MODE';
-    state.textContent = dark ? 'ON' : 'OFF';
-    try { localStorage.setItem('sillink-theme', dark ? 'dark' : 'light'); } catch (_) {}
-  };
-
-  let saved = 'light';
-  try { saved = localStorage.getItem('sillink-theme') || 'light'; } catch (_) {}
-  applyTheme(saved);
-
-  button.addEventListener('click', () => {
-    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-  });
-})();
-/* SILLINK PERMANENT THEME CONTROL END */

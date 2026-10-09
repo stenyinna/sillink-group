@@ -16,6 +16,3 @@ This is a self-contained static website; no build step is required. The Google F
 
 Note: This is a faithful recreation based on the public page content and supplied logo, not the original Base44 source code. Exact pixel-for-pixel duplication of proprietary source or backend behavior cannot be guaranteed.
 
-Theme switch: The header includes a light/dark mode icon. It remembers the visitor's preference where browser storage is available.
-
-Theme control: A visible LIGHT MODE / DARK MODE switch appears in the top navigation bar. OFF means light mode; ON means dark mode.
