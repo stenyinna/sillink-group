@@ -4,7 +4,7 @@ Files:
 - index.html: website markup
 - styles.css: responsive layout and red/white/charcoal styling
 - script.js: interactive 10-sector slider, mobile navigation, and contact email form
-- assets/sillink-logo.png: supplied logo
+- image/sillink-logo.png: supplied logo
 
 UPLOAD:
 1. Extract this ZIP on your computer.

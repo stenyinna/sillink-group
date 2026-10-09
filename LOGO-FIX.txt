@@ -1,0 +1,6 @@
+LOGO FIX
+
+Logo file included at /image/sillink-logo.png.
+Use: <img src="/image/sillink-logo.png" alt="Sillink Group">
+Keep the image folder at the deployed site's root and redeploy.
+If the project uses a public directory, put the file at public/image/sillink-logo.png; the public URL stays /image/sillink-logo.png.
