@@ -1,28 +1,20 @@
-SILLINK GROUPD WEBSITE
+SILLINK GROUP — PERMANENT LOGO FIX
+==================================
+The supplied PNG logo is bundled in assets/sillink-logo.png and assets/favicon.png.
+All visible logo instances use the exact same relative path: ./assets/sillink-logo.png
+This includes the header, homepage slider, About panel, and footer.
 
-FILES
-- index.html: main website
-- styles.css: responsive design/theme
-- app.js: content rendering and contact form
-- content.json: EDITABLE site text, sectors and colors
-- admin.html: browser editor; save locally or download updated content.json
-- assets/logo.svg and favicon.svg
-- api/contact.php: Vercel PHP email endpoint
-- vercel.json: Vercel routing/PHP runtime
+DEPLOY:
+1. Extract this ZIP.
+2. Upload index.html, README.txt, and the entire assets folder to the ROOT of your GitHub repository.
+3. Commit/push changes and redeploy on Vercel.
+4. Framework preset: Other. Build command and output directory: leave empty.
+5. Ensure the uploaded repository has this exact structure:
+   index.html
+   README.txt
+   assets/sillink-logo.png
+   assets/favicon.png
 
-VERCEL DEPLOYMENT
-1. Upload the ZIP to Vercel Drop or import the folder/project.
-2. In Vercel Project Settings > Environment Variables add:
-   RESEND_API_KEY = your Resend API key
-   CONTACT_TO_EMAIL = inspireiqglobal@gmail.com
-   CONTACT_FROM_EMAIL = Website <your-verified-domain@example.com>
-3. Redeploy.
-
-EMAIL
-The contact form sends to inspireiqglobal@gmail.com through Resend. You must verify the sender domain in Resend and set CONTACT_FROM_EMAIL accordingly. The package intentionally does not contain an API key.
-
-EDITING
-Open /admin.html. Edit text/colors, save locally for your browser, or download content.json and replace the site's content.json, then redeploy. For a true multi-user live CMS, connect a database such as Supabase; Vercel serverless functions do not provide a persistent writable local filesystem.
-
-NOTE
-The design/content is a clean recreation based on the public reference site, not a copy of proprietary source code. Replace any company-specific legal/contact details as needed.
+Do not upload only index.html; the assets folder must be included.
+This is a static website and does not require PHP, npm, or a serverless function.
+Contact links open an email application addressed to inspireiqglobal@gmail.com.
