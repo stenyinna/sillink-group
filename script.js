@@ -54,25 +54,33 @@ byId('contact-form').addEventListener('submit',e=>{
 });
 
 
-// Light/dark mode toggle; preference is remembered when browser storage is available.
+
+
+// Visible top-bar light/dark ON/OFF switch.
 (function(){
   const toggle = document.getElementById('theme-toggle');
+  const label = document.getElementById('theme-label');
+  const state = document.getElementById('theme-state');
   if (!toggle) return;
-  const icon = toggle.querySelector('.theme-icon');
-  const setTheme = theme => {
-    document.body.setAttribute('data-theme', theme);
+
+  function applyTheme(theme, persist) {
     const dark = theme === 'dark';
-    icon.textContent = dark ? '☀' : '☾';
-    toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
-    toggle.setAttribute('title', dark ? 'Switch to light mode' : 'Switch to dark mode');
-    toggle.setAttribute('aria-pressed', String(dark));
-  };
-  let saved = null;
-  try { saved = localStorage.getItem('sillink-theme'); } catch (e) {}
-  setTheme(saved === 'dark' ? 'dark' : 'light');
-  toggle.addEventListener('click', () => {
-    const next = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    setTheme(next);
-    try { localStorage.setItem('sillink-theme', next); } catch (e) {}
+    document.body.setAttribute('data-theme', dark ? 'dark' : 'light');
+    toggle.setAttribute('aria-checked', String(dark));
+    toggle.setAttribute('aria-label', dark ? 'Dark mode is ON. Switch to light mode.' : 'Dark mode is OFF. Switch to dark mode.');
+    toggle.setAttribute('title', dark ? 'Dark mode ON — click for light mode' : 'Dark mode OFF — click for dark mode');
+    if (label) label.textContent = dark ? 'DARK MODE' : 'LIGHT MODE';
+    if (state) state.textContent = dark ? 'ON' : 'OFF';
+    if (persist) {
+      try { localStorage.setItem('sillink-theme', dark ? 'dark' : 'light'); } catch (e) {}
+    }
+  }
+
+  let saved = 'light';
+  try { saved = localStorage.getItem('sillink-theme') || 'light'; } catch (e) {}
+  applyTheme(saved, false);
+  toggle.addEventListener('click', function() {
+    const isDark = document.body.getAttribute('data-theme') === 'dark';
+    applyTheme(isDark ? 'light' : 'dark', true);
   });
 })();
