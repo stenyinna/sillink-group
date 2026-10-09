@@ -52,3 +52,27 @@ byId('contact-form').addEventListener('submit',e=>{
   byId('form-note').textContent='Opening your email app… If it does not open, email info@sillinkgroupd.com directly.';
   window.location.href=`mailto:info@sillinkgroupd.com?subject=${subject}&body=${body}`;
 });
+
+
+// Light/dark mode toggle; preference is remembered when browser storage is available.
+(function(){
+  const toggle = document.getElementById('theme-toggle');
+  if (!toggle) return;
+  const icon = toggle.querySelector('.theme-icon');
+  const setTheme = theme => {
+    document.body.setAttribute('data-theme', theme);
+    const dark = theme === 'dark';
+    icon.textContent = dark ? '☀' : '☾';
+    toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    toggle.setAttribute('title', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    toggle.setAttribute('aria-pressed', String(dark));
+  };
+  let saved = null;
+  try { saved = localStorage.getItem('sillink-theme'); } catch (e) {}
+  setTheme(saved === 'dark' ? 'dark' : 'light');
+  toggle.addEventListener('click', () => {
+    const next = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    try { localStorage.setItem('sillink-theme', next); } catch (e) {}
+  });
+})();

@@ -1,6 +1,7 @@
-LOGO FIX
+LOGO PATH FIX
 
-Logo file included at /image/sillink-logo.png.
-Use: <img src="/image/sillink-logo.png" alt="Sillink Group">
-Keep the image folder at the deployed site's root and redeploy.
-If the project uses a public directory, put the file at public/image/sillink-logo.png; the public URL stays /image/sillink-logo.png.
+The logo is stored in the repository root as sillink-logo.png.
+The website references it as /sillink-logo.png (no /image folder).
+
+For a Vercel static site, commit sillink-logo.png alongside index.html.
+For Next.js or another framework that serves static assets from public/, put the file at public/sillink-logo.png; the browser URL is still /sillink-logo.png.
