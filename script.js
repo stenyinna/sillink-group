@@ -95,3 +95,33 @@ byId('contact-form').addEventListener('submit',e=>{
     initThemeSwitch();
   }
 })();
+
+
+/* SILLINK PERMANENT THEME CONTROL START */
+(() => {
+  const root = document.documentElement;
+  const button = document.getElementById('theme-toggle');
+  const label = document.getElementById('theme-label');
+  const state = document.getElementById('theme-state');
+  if (!button || !label || !state) return;
+
+  const applyTheme = (theme) => {
+    const dark = theme === 'dark';
+    root.setAttribute('data-theme', dark ? 'dark' : 'light');
+    button.setAttribute('aria-checked', String(dark));
+    button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    button.setAttribute('title', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    label.textContent = dark ? 'DARK MODE' : 'LIGHT MODE';
+    state.textContent = dark ? 'ON' : 'OFF';
+    try { localStorage.setItem('sillink-theme', dark ? 'dark' : 'light'); } catch (_) {}
+  };
+
+  let saved = 'light';
+  try { saved = localStorage.getItem('sillink-theme') || 'light'; } catch (_) {}
+  applyTheme(saved);
+
+  button.addEventListener('click', () => {
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+})();
+/* SILLINK PERMANENT THEME CONTROL END */
